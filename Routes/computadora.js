@@ -40,6 +40,63 @@ routes.get('/', (req, res) => {
         });
     });
 });
+
+// =====================================================
+// Obtener computadoras según alguritmo de predicción
+// =====================================================
+routes.get('/sugerencia', (req, res) => {
+    let desde = req.query.desde || 0;
+    desde = Number(desde);
+    
+    let presupuesto = req.query.presupuesto || 0;
+    presupuesto = Number(presupuesto);
+
+    let edad = req.query.edad || 0;
+    edad = Number(edad);
+
+    let horas = req.query.horas || 0;
+    horas = Number(horas);
+
+    let ocupacion = req.query.ocupacion || 0;
+    ocupacion = String(ocupacion);
+
+    /* res.json({
+        desde: desde,
+        edad: edad,
+        horas: horas,
+        ocupacion: ocupacion
+    }); */
+
+    // algoritmo de sugerencia
+    // ...
+
+    // let min = presupuesto - 2000;
+    // let max = presupuesto + 2000;
+
+    Computadora.find({
+        precio: {
+            $gte: (presupuesto - 2000),
+            $lte: (presupuesto + 2000)
+        }
+     }).exec((err, computadoras) => {
+
+        if (err) {
+            return res.status(500).json({
+                ok: false,
+                mensaje: 'Error al cargar computadoras',
+                errors: err
+            });
+        }
+
+        res.status(200).json({
+            ok: true,
+            computadoras: computadoras,
+        });
+
+     });
+
+});
+
 // =====================================================
 // Inserta computadora
 // =====================================================

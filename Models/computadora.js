@@ -13,10 +13,10 @@ var tiposMarcaCpu = {
     values: ['AMD', 'INTEL'],
     mensaje: '{VALUE} no es una marca permitida'
 };
-var tiposVideo = {
+/* var tiposVideo = {
     values: ['S-VIDEO', 'VGA','MINI_VGA','HDMI','DISPLAY_PORT','MINI_DISPLAY_PORT'],
     mensaje: '{VALUE} no es una marca permitida'
-};
+}; */
 var sistemas = {
     values: ['WINDOWS10PRO', 'WINDOWS10HOME', 'WINDOWS10SL', 'DISTLINUX', 'MACOSX', 'MACOSC'],
     mensaje: '{VALUE} no es una sistema permitido'
@@ -24,9 +24,8 @@ var sistemas = {
 
 const computadoraSchema = new Schema({
     marca: {
-        type: String,
-        required: [true, 'La marca es requrida']
-    },
+        type: String, required: [true, 'La marca es requrida'] },
+
     modelo: {
         type: String,
         required: [true, 'El modelo es requrido']
@@ -37,17 +36,15 @@ const computadoraSchema = new Schema({
     },
     color: {
         type: String,
-        required: [true, 'El color es requrido']
+        required: false
     },
     almacenamiento: {
-        type: String,
+        type: String, 
         required: [true, 'El almacenamiento es requrido']
     },
-    tipoAlmacenamineto: {
-        type: String,
-        unique: true,
-        required: [true, 'El almacenamiento es requrido']
-    },
+
+    tipoAlmacenamineto: {  type: String,  uppercase: true, enum: tiposAlmacenaminetos,  required: [true, 'El almacenamiento es requrido']  },
+    
     ram: {
         type: String,
         required: [true, 'la ram es requrida']
@@ -58,11 +55,7 @@ const computadoraSchema = new Schema({
         required: [true, 'la velocidad del cpu es requrido']
     },
     
-    marcaCpu: {
-        type: String,
-        unique: true,
-        required: [true, 'El almacenamiento es requrido']
-    },
+    marcaCpu: { type: String, uppercase: true, enum: tiposMarcaCpu, required: [true, 'El almacenamiento es requrido'] },
     
     lectorCD: {
         type: Boolean,
@@ -70,8 +63,7 @@ const computadoraSchema = new Schema({
     },
     
     video: {
-        type: [String],
-        required: [true, 'La caracteristica es requerida']
+        type: [String], required: [true, 'La caracteristica es requerida']
     },
 
     tajetaIntegrada: {
@@ -91,7 +83,7 @@ const computadoraSchema = new Schema({
     
     tamañoPantalla: {
         type: String,
-        required: [true, 'La caracteristica es requerida']
+        required: false
     },
     
     resolucion: {
@@ -114,10 +106,7 @@ const computadoraSchema = new Schema({
         required: [true, 'La caracteristica es requerida']
     },
 
-    sistemaOperativo: {
-        type: String,
-        required: [true, 'La caracteristica es requerida']
-    },
+    sistemaOperativo: { type: String, required: false },
 
     usb2: {
         type: String,
@@ -136,7 +125,7 @@ const computadoraSchema = new Schema({
 
     img: {
         type: String,
-        required: [true, 'La caracteristica es requerida']
+        required: false
     },
 });
 

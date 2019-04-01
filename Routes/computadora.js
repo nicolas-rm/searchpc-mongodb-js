@@ -12,33 +12,33 @@ routes.get('/', (req, res) => {
     desde = Number(desde);
 
     Computadora.find({})
-    .skip(desde)
-    .limit(5)
-    .exec((err, computadoras) => {
-        if (err) {
-            return res.status(500).json({
-                ok: false,
-                mensaje: 'Error al cargar computadoras',
-                errors: err
-            });
-        }
-
-        Computadora.countDocuments({}, (err, conteo) => {
+        .skip(desde)
+        .limit(5)
+        .exec((err, computadoras) => {
             if (err) {
                 return res.status(500).json({
                     ok: false,
-                    mensaje: 'Error al cargar el total de computadoras',
+                    mensaje: 'Error al cargar computadoras',
                     errors: err
                 });
             }
 
-            res.status(200).json({
-                ok: true,
-                computadoras: computadoras,
-                total: conteo
+            Computadora.countDocuments({}, (err, conteo) => {
+                if (err) {
+                    return res.status(500).json({
+                        ok: false,
+                        mensaje: 'Error al cargar el total de computadoras',
+                        errors: err
+                    });
+                }
+
+                res.status(200).json({
+                    ok: true,
+                    computadoras: computadoras,
+                    total: conteo
+                });
             });
         });
-    });
 });
 
 // =====================================================
@@ -47,7 +47,7 @@ routes.get('/', (req, res) => {
 routes.get('/sugerencia', (req, res) => {
     let desde = req.query.desde || 0;
     desde = Number(desde);
-    
+
     let presupuesto = req.query.presupuesto || 0;
     presupuesto = Number(presupuesto);
 
@@ -78,7 +78,7 @@ routes.get('/sugerencia', (req, res) => {
             $gte: (presupuesto - 2000),
             $lte: (presupuesto + 2000)
         }
-     }).exec((err, computadoras) => {
+    }).exec((err, computadoras) => {
 
         if (err) {
             return res.status(500).json({
@@ -93,7 +93,7 @@ routes.get('/sugerencia', (req, res) => {
             computadoras: computadoras,
         });
 
-     });
+    });
 
 });
 
@@ -118,7 +118,7 @@ routes.post('/', (req, res) => {
         tajetaIntegrada: body.tajetaIntegrada,
         tajetaDedicada: body.tajetaDedicada,
         modeloTarjetaVideo: body.modeloTarjetaVideo,
-        tamañoPantalla: body.tamañoPantalla,
+        tamanoPantalla: body.tamanoPantalla,
         resolucion: body.resolucion,
         ancho: body.ancho,
         alto: body.alto,

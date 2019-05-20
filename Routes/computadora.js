@@ -44,42 +44,36 @@ routes.get('/', (req, res) => {
 // =====================================================
 // Obtener computadoras según alguritmo de predicción
 // =====================================================
-routes.get('/sugerencia', (req, res) => {
-    let desde = req.query.desde || 0;
-    desde = Number(desde);
+routes.post('/sugerencia', (req, res) => {
 
-    let presupuesto = req.query.presupuesto || 0;
-    presupuesto = Number(presupuesto);
+    let preferencias = req.body;
+    /* 
+        var ocupacion = preferencias.ocupacion;
+        var horas = preferencias.horas;
+        var presupuesto = preferencias.presupuesto;
+        var edad = preferencias.edad;
+        var nivelUso = preferencias.nivelUso;
+        var marcaPreferencia = preferencias.marcaPreferencia;
+        var color = preferencias.color;
+        var almacenamiento = preferencias.almacenamiento; */
+    // res.json({
+    //     preferencias: preferencias
+    // });
 
-    let edad = req.query.edad || 0;
-    edad = Number(edad);
-
-    let horas = req.query.horas || 0;
-    horas = Number(horas);
-
-    let ocupacion = req.query.ocupacion || 0;
-    ocupacion = String(ocupacion);
-
-    /* res.json({
-        desde: desde,
-        edad: edad,
-        horas: horas,
-        ocupacion: ocupacion
-    }); */
-
-    // algoritmo de sugerencia
-    // ...
-
-    // let min = presupuesto - 2000;
-    // let max = presupuesto + 2000;
-
+    console.log(preferencias.marcaPreferencia);
+    // Conversiones de string a number (permiten el funcionamiento del algoritmo)
+    // preferencias.presupuesto = parseFloat(preferencias.presupuesto);
+    // --------------------
     Computadora.find({
         precio: {
-            $gte: (presupuesto - 2000),
-            $lte: (presupuesto + 2000)
-        }
+            $gte: (preferencias.presupuesto - 2000),
+            $lte: (preferencias.presupuesto + 2000)
+        },
+        // marca: preferencias.marmarcaPreferencia
+        // marca: { $in: (preferencias.marcaPreferencia[0]) },
+        marca: preferencias.marcaPreferencia || preferencias.marcaPreferencia[0],
+        // color: { $in: (preferencias.color), $or: ('') }
     }).exec((err, computadoras) => {
-
         if (err) {
             return res.status(500).json({
                 ok: false,

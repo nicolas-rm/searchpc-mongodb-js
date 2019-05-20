@@ -33,29 +33,34 @@ mongoose.set('useCreateIndex', true)
 
 // Importando rutas
 const appRoutes = require('./Routes/app');
-const usuarioRoutes = require('./Routes/usuario');
-const loginRoutes = require('./Routes/login');
-const hospitalRoutes = require('./Routes/hospital');
-const medicoRoutes = require('./Routes/medico');
-const busqeudaRoutes = require('./Routes/busqueda');
-const uploadRoutes = require('./Routes/upload');
-const imagesRoutes = require('./Routes/images');
+// const usuarioRoutes = require('./Routes/usuario');
+// const loginRoutes = require('./Routes/login');
+// const hospitalRoutes = require('./Routes/hospital');
+// const medicoRoutes = require('./Routes/medico');
+// const busqeudaRoutes = require('./Routes/busqueda');
+// const uploadRoutes = require('./Routes/upload');
+// const imagesRoutes = require('./Routes/images');
 
 const computadorasRoutes = require('./Routes/computadora');
 
 
 // Rutas
 app.use('/computadora', computadorasRoutes);
-app.use('/usuario', usuarioRoutes);
-app.use('/hospital', hospitalRoutes);
-app.use('/medico', medicoRoutes);
-app.use('/busqueda', busqeudaRoutes);
-app.use('/login', loginRoutes);
-app.use('/upload', uploadRoutes);
-app.use('/img', imagesRoutes);
+// app.use('/usuario', usuarioRoutes);
+// app.use('/hospital', hospitalRoutes);
+// app.use('/medico', medicoRoutes);
+// app.use('/busqueda', busqeudaRoutes);
+// app.use('/login', loginRoutes);
+// app.use('/upload', uploadRoutes);
+// app.use('/img', imagesRoutes);
 app.use('/', appRoutes);
 
 // Escuchar peticiones
 app.listen(3000, () => {
     console.log('Express server en el puerto 3000: \x1b[36m%s\x1b[0m', 'online');
+
 });
+
+
+
+// ------------------------------

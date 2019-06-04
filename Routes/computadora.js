@@ -60,19 +60,22 @@ routes.post('/sugerencia', (req, res) => {
     //     preferencias: preferencias
     // });
 
-    console.log(preferencias.marcaPreferencia);
+
+    console.log('MARCAS PREFERENCIAS : ' + preferencias.marcaPreferencia);
     // Conversiones de string a number (permiten el funcionamiento del algoritmo)
     // preferencias.presupuesto = parseFloat(preferencias.presupuesto);
     // --------------------
     Computadora.find({
+        marca: { $in: preferencias.marcaPreferencia },
         precio: {
             $gte: (preferencias.presupuesto - 2000),
             $lte: (preferencias.presupuesto + 2000)
-        },
+        }
         // marca: preferencias.marmarcaPreferencia
         // marca: { $in: (preferencias.marcaPreferencia[0]) },
-        marca: preferencias.marcaPreferencia || preferencias.marcaPreferencia[0],
+        // marca: preferencias.marcaPreferencia || preferencias.marcaPreferencia[0],
         // color: { $in: (preferencias.color), $or: ('') }
+
     }).exec((err, computadoras) => {
         if (err) {
             return res.status(500).json({

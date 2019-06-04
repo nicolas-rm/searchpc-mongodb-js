@@ -32,25 +32,30 @@ const computadoraSchema = new Schema({
 
     marca: {
         type: String,
+        uppercase: true,
         required: [true, 'LA MARCA ES REQUERIDO']
     },
 
     modelo: {
         type: String,
+        uppercase: true,
         required: [true, 'EL MODELO ES REQUERIDO']
     },
     precio: {
         type: Number,
+        uppercase: true,
         required: [true, 'EL PRECIO CPU ES REQUERIDO']
     },
 
     color: {
         type: String,
+        uppercase: true,
         required: [true, 'EL COLOR ES REQUERIDO']
     },
 
     almacenamiento: {
         type: String,
+        uppercase: true,
         required: [true, 'LA CANTIDAD DE ALMACENAMIENTO ES REQUERIDO']
     },
 
@@ -63,11 +68,13 @@ const computadoraSchema = new Schema({
 
     ram: {
         type: String,
+        uppercase: true,
         required: [true, 'LA MEMORIA RAM ES REQUERIDO']
     },
 
     velocidadCpu: {
         type: Number,
+        uppercase: true,
         required: [true, 'LA VELOCIDAD CPU ES REQUERIDO']
     },
 
@@ -80,6 +87,7 @@ const computadoraSchema = new Schema({
 
     lectorCD: {
         type: Boolean,
+        uppercase: true,
         required: [true, 'LA ENTRADA CD ES REQUERIDO']
     },
 
@@ -92,42 +100,50 @@ const computadoraSchema = new Schema({
 
     tajetaIntegrada: {
         type: Boolean,
+        uppercase: true,
         required: [true, 'LA TARJETA INTEGRADA ES REQUERIDO']
     },
 
     tajetaDedicada: {
         type: Boolean,
+        uppercase: true,
         required: [true, 'LA TARJETA DEDICADA ES REQUERIDO']
     },
 
     modeloTarjetaVideo: {
         type: String,
+        uppercase: true,
         required: [true, 'EL MODELO DE LA TARJETA DE VIDEO ES REQUERIDO']
     },
 
 
     tamanoPantalla: {
         type: String,
+        uppercase: true,
         required: [true, 'EL TAMAÑO DE LA PANTALLA ES REQUERIDO']
     },
 
     resolucion: {
         type: String,
+        uppercase: true,
         required: [true, 'LA RESOLUCION ES REQUERIDO']
     },
 
     ancho: {
         type: String,
+        uppercase: true,
         required: [true, 'EL ANCHO ES REQUERIDO']
     },
 
     alto: {
         type: String,
+        uppercase: true,
         required: [true, 'EL ALTO ES REQUERIDO']
     },
 
     peso: {
         type: String,
+        uppercase: true,
         required: [true, 'EL PESO ES REQUERIDO']
     },
 
@@ -141,22 +157,26 @@ const computadoraSchema = new Schema({
 
     usb2: {
         type: String,
+        uppercase: true,
         required: [true, 'EL USB2 ES REQUERIDO']
     },
 
     usb3: {
         type: String,
+        uppercase: true,
         required: [true, 'EL USB3 ES REQUERIDO']
     },
 
 
     expansionRam: {
         type: Boolean,
+        uppercase: true,
         required: [true, 'LA EXPANSION ES REQUERIDO']
     },
     // FALTA
     img: {
         type: String,
+        // uppercase: true,
         required: [false, 'CAMPO IMAGEN']
     },
 });

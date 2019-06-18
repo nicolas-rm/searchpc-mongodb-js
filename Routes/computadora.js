@@ -70,7 +70,12 @@ routes.post('/sugerencia', (req, res) => {
         precio: {
             $gte: (preferencias.presupuesto - 2000),
             $lte: (preferencias.presupuesto + 2000)
-        }
+        },
+        color: { $in: preferencias.color }
+        // color: {
+        //     $cond:
+        // }
+
         // marca: preferencias.marmarcaPreferencia
         // marca: { $in: (preferencias.marcaPreferencia[0]) },
         // marca: preferencias.marcaPreferencia || preferencias.marcaPreferencia[0],
